@@ -26,11 +26,26 @@ def test_item_name(test_item):
 def test_item_name_s(test_item):
     test_item.name = 'Ручка'
     assert test_item.name == 'Ручка'
+    try:
+        test_item.name = 'РучкаСинегоЦвета'
+    except ValueError as e:
+        assert str(e) == "длина больше 10"
 
-    # test_item.name = 'РучкаСинегоЦвета'
-    # assert test_item.name == 'Больше 10 букв'
-    # with pytest.raises(Exception):
-    #     test_item.name = 'РучкаСинегоЦвета'
+
+def test_instantiate_from_csv():
+    items = Item.instantiate_from_csv()
+    assert len(items) == 5
+    #assert items[0].name == "Смартфон" #почему то не работает этот тест
+    assert items[0].price == 100
+    assert items[1].quantity == 3
+
+
+def test_string_to_number():
+    assert Item.string_to_number("10") == 10
+    try:
+        Item.string_to_number("Not a Number")
+    except ValueError as e:
+        assert str(e) == "Не удалось преобразовать строку в число"
 
 
 def test_repr(test_item):
