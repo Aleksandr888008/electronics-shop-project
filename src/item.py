@@ -53,7 +53,6 @@ class Item:
         else:
             raise ValueError("длина больше 10")
 
-
     @classmethod
     def instantiate_from_csv(cls):
         """Инициализирует экземпляры класса Item данными из файла src/items.csv."""
@@ -77,10 +76,11 @@ class Item:
             raise ValueError("Не удалось преобразовать строку в число")
 
     def __repr__(self):
-       """ Возвращает строковое представление экземпляра класса Item."""
-       return f'{self.__class__.__name__}("{self.__name}", {self.price}, {self.quantity})'
+        """ Возвращает строковое представление экземпляра класса Item."""
+        return f'{self.__class__.__name__}("{self.__name}", {self.price}, {self.quantity})'
 
     def __str__(self):
         """Возвращает строку с названием товара."""
         return f'{self.__name}'
+
 
