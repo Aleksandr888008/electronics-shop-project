@@ -1,4 +1,5 @@
 import csv
+#from src.phone import Phone
 
 
 class Item:
@@ -83,4 +84,7 @@ class Item:
         """Возвращает строку с названием товара."""
         return f'{self.__name}'
 
-
+    def __add__(self, other):
+        if not isinstance(other, self.__class__):
+            raise ValueError('Складывать можно только объекты Item и дочерние от них.')
+        return self.quantity + other.quantity

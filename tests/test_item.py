@@ -1,6 +1,7 @@
 import pytest
 
 from src.item import Item
+from src.phone import Phone
 
 """Здесь надо написать тесты с использованием pytest для модуля item."""
 
@@ -35,7 +36,7 @@ def test_item_name_s(test_item):
 def test_instantiate_from_csv():
     items = Item.instantiate_from_csv()
     assert len(items) == 5
-    #assert items[0].name == "Смартфон" #почему то не работает этот тест
+    # assert items[0].name == "Смартфон" #почему то не работает этот тест
     assert items[0].price == 100
     assert items[1].quantity == 3
 
@@ -55,3 +56,17 @@ def test_repr(test_item):
 def test_str(test_item):
     assert str(test_item) == "Смартфон"
 
+
+def test_add():
+    phone1 = Phone('iPhone 14', 120_000, 5, 2)
+    phone2 = Phone('iPhone 13', 120_000, 10, 2)
+    item1 = Item('Смартфон', 10000, 20)
+    assert item1 + phone1 == 25
+    assert phone1 + item1 == 25
+    assert phone1 + phone1 == 10
+    assert phone1 + phone2 == 15
+    # assert phone1 + 10 == 15  #ValueError('Складывать можно только объекты Item и дочерние от них.')
+    try:
+        not isinstance(Phone, Item)
+    except ValueError as e:
+        assert e == 'Складывать можно только объекты Item и дочерние от них.'
