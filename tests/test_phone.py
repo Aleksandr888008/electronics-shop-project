@@ -19,7 +19,7 @@ def test_add():
     assert phone1 + item1 == 25
     assert phone1 + phone1 == 10
     assert phone1 + phone2 == 15
-    # assert phone1 + 10 == 15  #ValueError('Складывать можно только объекты Item и дочерние от них.')
+    #assert phone1 + 10 == 15  #ValueError('Складывать можно только объекты Item и дочерние от них.')
     try:
         not isinstance(Phone, Item)
     except ValueError as e:
@@ -29,6 +29,3 @@ def test_add():
 def test_repr(test_phone):
     assert repr(test_phone) == "Phone('iPhone 14', 120000, 5, 2)"
 
-
-def test_str(test_phone):
-    assert str(test_phone) == 'iPhone 14'

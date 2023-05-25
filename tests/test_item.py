@@ -27,6 +27,7 @@ def test_item_name(test_item):
 def test_item_name_s(test_item):
     test_item.name = 'Ручка'
     assert test_item.name == 'Ручка'
+
     try:
         test_item.name = 'РучкаСинегоЦвета'
     except ValueError as e:
