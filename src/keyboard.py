@@ -16,7 +16,13 @@ class MixinLan:
 
 class Keyboard(Item, MixinLan):
 
-    def __init__(self, name: str, price: float, quantity: int, language="EN") -> None:
+    def __init__(self, name: str, price: float, quantity: int, language ="EN") -> None:
         super().__init__(name, price, quantity)
 
         self.language = language
+
+
+    # @property
+    # def keyboard_language(self):
+    #
+    #     return self.__language
