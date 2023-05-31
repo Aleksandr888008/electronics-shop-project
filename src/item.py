@@ -1,5 +1,4 @@
 import csv
-#from src.phone import Phone
 
 
 class Item:
@@ -58,7 +57,7 @@ class Item:
     def instantiate_from_csv(cls):
         """Инициализирует экземпляры класса Item данными из файла src/items.csv."""
         items = []
-        with open('src/items.csv', encoding="windows-1251", newline='') as csvfile:
+        with open('c:/z_python/electronics-shop-project/src/items.csv', encoding="windows-1251", newline='') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 name = row["name"]
