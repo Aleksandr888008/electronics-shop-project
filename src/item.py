@@ -1,6 +1,10 @@
 import csv
 
 
+class InstantiateCSVError(Exception):
+    pass
+
+
 class Item:
     """
     Класс для представления товара в магазине.
@@ -57,15 +61,26 @@ class Item:
     def instantiate_from_csv(cls):
         """Инициализирует экземпляры класса Item данными из файла src/items.csv."""
         items = []
-        with open('c:/z_python/electronics-shop-project/src/items.csv', encoding="windows-1251", newline='') as csvfile:
-            reader = csv.DictReader(csvfile)
-            for row in reader:
-                name = row["name"]
-                price = Item.string_to_number(row["price"])
-                quantity = Item.string_to_number(row["quantity"])
-                item = cls(name, price, quantity)
-                items.append(item)
-        return items
+        try:
+            f = open('c:/z_python/electronics-shop-project/src/items.csv')
+            f.close()
+        except FileNotFoundError:
+            raise FileNotFoundError("Отсутствует файл item.csv")
+        else:
+
+            with open('c:/z_python/electronics-shop-project/src/items.csv', encoding="windows-1251",
+                      newline='') as csvfile:
+                reader = csv.DictReader(csvfile)
+                for row in reader:
+                    if "quantity" not in row or "price" not in row or "name" not in row:
+                        raise InstantiateCSVError("Файл item.csv поврежден")
+                    else:
+                        name = row["name"]
+                        price = Item.string_to_number(row["price"])
+                        quantity = Item.string_to_number(row["quantity"])
+                        item = cls(name, price, quantity)
+                        items.append(item)
+            return items
 
     @staticmethod
     def string_to_number(num):

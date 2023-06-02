@@ -24,4 +24,4 @@ def test_change_lang(test_keyboard):
 
 def test_change_lang_two(test_keyboard):
     test_keyboard.change_lang().change_lang()
-    assert str(test_keyboard.language) == "RU"
+    assert str(test_keyboard.language) == "EN"
